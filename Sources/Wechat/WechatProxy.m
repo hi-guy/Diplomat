@@ -323,14 +323,14 @@ static NSString *urlEncode(id object)
 @implementation DTImageMessage (Wechat)
 - (WXMediaMessage *)wechatMessage
 {
-  WXMediaMessage *message = [super wechatMessage];
-  message.thumbData = UIImageJPEGRepresentation([self.thumbnailableImage resizedImage:CGSizeMake(240, 240) interpolationQuality:kCGInterpolationMedium], 0.65);
-  WXImageObject *imageObect = [WXImageObject object];
-  imageObect.imageData = self.imageData;
-
-  message.mediaObject = imageObect;
-
-  return message;
+    WXMediaMessage *message = [super wechatMessage];
+    message.thumbData = UIImageJPEGRepresentation([self.thumbnailableImage resizedImageWithContentMode:UIViewContentModeScaleAspectFit bounds:CGSizeMake(240, 240) interpolationQuality:kCGInterpolationMedium], 0.65);
+    WXImageObject *imageObect = [WXImageObject object];
+    imageObect.imageData = self.imageData;
+    
+    message.mediaObject = imageObect;
+    
+    return message;
 }
 @end
 
